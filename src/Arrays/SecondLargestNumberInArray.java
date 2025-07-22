@@ -31,14 +31,14 @@ public class SecondLargestNumberInArray {
 		System.out.println("secondLargestNumber : "+ secondLargestNumber); // 70
 		
         // Method 3: Sort in descending order, then skip the first element and take the next
-		int secondLargestDesc = Arrays.stream(num)
-                .boxed() // Convert to Stream<Integer> to use Comparator
-                .sorted(Comparator.reverseOrder()) // Sorts in descending order: 9, 7, 5, 4, 3, 2, 1
-                .skip(1) // Skips the largest number (first element)
+	int secondLargestOrDefault = Arrays.stream(num)
+                .boxed()
+                .sorted(Comparator.reverseOrder())
+                .skip(1)
                 .findFirst()
-                .getAsInt(); // Gets the next element (which is the second largest) 
-	   
-		System.out.println("Second largest number (Descending sort): " + secondLargestDesc); // Output: 7
+                .orElse(Integer.MIN_VALUE); // Provide a default value if no second largest is found
+        System.out.println("Second largest (Method 3 - with orElse): " + secondLargestOrDefault);
 
+		
 	}
 }
